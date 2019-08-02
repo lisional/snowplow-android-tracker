@@ -1,5 +1,7 @@
 package com.snowplowanalytics.snowplowtrackerdemo.uitest;
 
+import android.content.Intent;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,6 +45,8 @@ public class UITest {
     public void startDemoTest() throws InterruptedException {
 
         Espresso.closeSoftKeyboard();
+
+        activityRule.getActivity().sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 
         // Type text and then press the button.
         onView( withId(R.id.emitter_uri_field) ).check(matches(withHint("Enter endpoint here…")));
